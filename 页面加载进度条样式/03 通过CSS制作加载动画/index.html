@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>progress bar 03</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/css.css" type="text/css" />
+  <style type="text/css">
+    body {
+      background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-527663.png") fixed center no-repeat;
+      background-size: cover;
+    }
+  </style>
+  <script src="js/jquery.js"></script>
+  <script>
+  document.onreadystatechange = function() {
+    if (document.readyState == "complete") {
+      $(".loading").fadeOut();
+    }
+  }
+
+  </script>
+</head>
+
+<body>
+  <div class="loading">
+    <div class="pic">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+  </div>
+  <p>Wellcome!</p>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="根据输入的15或者18位身份证号码计算最后一位校验码" />
+    <title>身份证校验码计算</title>
+    <style type="text/css">
+    body {
+        text-align: center;
+        margin: 0;
+        background-color: #EEE;
+    }
+
+    main {
+        margin: 0 auto;
+    }
+
+    main div {
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    code {
+        text-align: justify;
+        overflow-wrap: break-word;
+
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+
+        display: block;
+        border: solid 1px;
+        border-radius: 5px;
+
+        max-width: 800px;
+        padding: 5px 15px;
+        margin: 10px auto;
+        font-size: 14px;
+        color: #4d4d4c;
+        background-color: #f7f7f7;
+        line-height: 1.6;
+        font-style: italic;
+    }
+
+    .form {
+        vertical-align: center;
+        background-color: #FFF;
+    }
+
+    .form span:first-child {
+        display: inline-block;
+        width: 100px;
+    }
+
+    .form input {
+        width: 200px;
+        background: white;
+        border: solid 1px;
+        margin: 0;
+        padding: 0 5px;
+
+        overflow: hidden;
+        line-height: 1.6;
+    }
+    </style>
+    <script language="JavaScript" type="text/JavaScript">
+        /*校验是否为15位或者18位身份证格式 */
+        function isIDNo(str) {
+            var reg=/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            // var reg=/(^[0-9]{18}$)|(^[0-9]{17}(X|x)$)|(^[0-9]{15}$)/;
+            return reg.test(str);
+        }
+        /*页面加载后默认选中输入框*/
+        window.onload = function() {
+            document.getElementById("id").select();
+        }
+        /*为此函数绑定热键Enter*/
+        document.onkeydown = function() {
+            if(window.event.keyCode == 13) {
+                checkcode()
+            }
+        }
+        function checkcode() {
+            var checkcode = [7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2];
+            var checkedcode = ["1","0","X","9","8","7","6","5","4","3","2"];
+            /*检查是否已经出现id=alert的标签，若存在则去除*/
+            var m = document.getElementById('alert');
+            if (m) {
+                m.parentNode.removeChild(m);
+            }
+            /*检查输入符号的正确性*/
+            var id = document.getElementById('id').value;
+            if (isIDNo(id)) {
+                if (id.length == 15) {
+                    id = id.substring(0,6) + "19" + id.substring(6,15)
+                }
+                var code = 0;
+                for (var i=0; i<17; i++) {
+                    code += id.substring(i, i+1) * checkcode[i];
+                }
+                if (id.substring(17,18) && id.substring(17,18) == checkedcode[code % 11]) {
+                    document.getElementById("cal").insertAdjacentHTML("afterEnd","<p id='alert'>校验码正确！</p>")
+                } else if (id.substring(17,18) && id.substring(17,18) != checkedcode[code % 11]) {
+                    document.getElementById("cal").insertAdjacentHTML("afterEnd","<p id='alert' style='color:red;'>校验码错误，应为" + checkedcode[code % 11] + "！</p>")
+                } else {
+                    document.getElementById("cal").insertAdjacentHTML("afterEnd","<p id='alert' style='color:green;'>校验码应为" + checkedcode[code % 11] + "！</p>")
+                }
+            } else {
+                document.getElementById("cal").insertAdjacentHTML("afterEnd","<p id='alert' style='color:red;'>身份证号码格式有误，应为15位或者18位的纯数字组合（18位时最后一位可为X）！</p>");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <div>
+            <p>身份证号码有15位和18位之分，15位的为较老的版本。由15位升18位的步骤为，第7、8位增加19或20（即公元纪年的前两位，基本为19），最后增加1位校验码。</p>
+            <p>校验码的计算方法为：
+                <code>
+1、 将前面的身份证号码17位数分别乘以不同的系数。
+<br/>
+从第一位到第十七位的系数分别为：7，9，10，5，8，4，2，1，6，3，7，9，10，5，8，4，2；
+<br/>
+2、 将这17位数字和系数相乘的结果相加，除以11，求得余数m；
+<br/>
+3、 余数0－1－2－3－4－5－6－7－8－9－10分别对应校验码：1－0－X －9－8－7－6－5－4－3－2。
+                </code>
+            </p>
+            <p>
+                例如：一个人身份证15位号码为
+                <code>100100800101111</code>
+                则其各位对应相乘的和为99，除以11的余数为0，故校验码为：
+                <code>1</code>
+            </p>
+        </div>
+        <div class="form">
+            <span>身份证号码：</span><input type="text" id="id">
+            <button onclick="checkcode()" id="cal">计算校验码</button>
+        </div>
+    </main>
+</body>
+
+</html>

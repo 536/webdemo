@@ -1,0 +1,185 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="根据输入的身高和体重计算BMI" />
+    <title>BMI值计算器</title>
+    <style type="text/css">
+    body {
+        text-align: center;
+        margin: 0;
+        background-color: #EEE;
+    }
+
+    main {
+        margin: 0 auto;
+    }
+
+    main div {
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    code {
+        text-align: justify;
+        overflow-wrap: break-word;
+
+        font-family: "PingFang SC", "Microsoft YaHei", "sans-serif";
+
+        display: block;
+        border: solid 1px;
+        border-radius: 5px;
+
+        max-width: 800px;
+        padding: 5px 15px;
+        margin: 10px auto;
+        font-size: 14px;
+        color: #4d4d4c;
+        background-color: #f7f7f7;
+        line-height: 1.6;
+        font-style: italic;
+    }
+
+    .form {
+        vertical-align: center;
+        background-color: #FFF;
+    }
+
+    .form span {
+        display: inline-block;
+        width: 50px;
+    }
+
+    .form input {
+        width: 200px;
+        background: white;
+        border: solid 1px;
+        margin: 0;
+        padding: 0 5px;
+
+        overflow: hidden;
+        line-height: 1.6;
+
+    }
+
+    #cal {
+        margin-bottom: 20px;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid;
+        border-collapse: collapse;
+        text-align: center;
+        line-height: 1.6;
+        margin: 0 auto;
+    }
+
+    table tr td:first-child {
+        width: 100px;
+    }
+
+    table tr td:last-child {
+        width: 200px;
+    }
+    </style>
+    <script language="JavaScript" type="text/JavaScript">
+        window.onload = function() {
+            document.getElementById("weight").select();
+        }
+        document.onkeydown = function() {
+            if(window.event.keyCode == 13) {
+                computingBMI()
+            }
+        }
+        function computingBMI() {
+            var obj = document.getElementById("cal");
+
+            var m = document.getElementById('alert')
+            if (m)
+            {
+                m.parentNode.removeChild(m);
+                var i = 0;
+                do {
+                    document.getElementsByTagName("tbody")[0].children[i].style.background='inherit';
+                    i++;
+                } while (i<4)
+
+            }
+
+            var height = Number(document.getElementById('height').value) / 100;
+            var weight = Number(document.getElementById('weight').value);
+            if (!height + !weight > 0)
+            {
+                obj.insertAdjacentHTML("afterEnd","<p id='alert' style='color:red;'>你的输入有误！</p>");
+            }
+            else
+            {
+                var BMI = weight / Math.pow(height,2);
+                obj.insertAdjacentHTML("afterEnd","<p id='alert'>你的 BMI 指数是 <b>" + BMI.toFixed(2) + "</b></p>");
+                if (BMI < 18.5)
+                {
+                    document.getElementsByTagName("tbody")[0].children[1].style.cssText='background-color: #6B8CD0;';
+                }
+                else if (BMI > 18.5 && BMI < 24)
+                {
+                    document.getElementsByTagName("tbody")[0].children[2].style.setProperty('background-color','#C3E88D');
+                }
+                else if (BMI > 24)
+                {
+                    document.getElementsByTagName("tbody")[0].children[3].style.background='#F78C6B';
+                }
+
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <main class='empty'>
+        <div>
+            <p>身体质量指数 (Body Mass Index, 简称BMI), 亦称克托莱指数, 是目前国际上常用的衡量人体胖瘦程度以及是否健康的一个标准。</p>
+            <p>BMI计算公式为：
+                <code>BMI = 体重Weight(kg) / 身高Height(m)<sup>2</sup></code>
+            </p>
+            <p>
+                例如：一个人体重为65kg，身高为180cm，则BMI为：
+                <code>65 / 1.8<sup>2</sup> ≈ 20.4</code>
+            </p>
+        </div>
+        <div class="form">
+            <span>体重：</span><input type="number" min="1" max="1000" id="weight" class="focus-trans"><span>kg</span>
+        </div>
+        <div class="form">
+            <span>身高：</span><input type="number" min="1" max="1000" id="height" class="focus-trans"><span>cm</span>
+        </div>
+        <div>
+            <button onclick="computingBMI()" id="cal">计算 BMI</button>
+            <table>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th>BMI</th>
+                    </tr>
+                    <tr>
+                        <td>偏轻</td>
+                        <td>&lt; 18.5</td>
+                    </tr>
+                    <tr>
+                        <td>中等</td>
+                        <td>18.5 ~ 24</td>
+                    </tr>
+                    <tr>
+                        <td>偏重</td>
+                        <td>&gt; 24</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

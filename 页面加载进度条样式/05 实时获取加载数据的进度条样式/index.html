@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>progress bar 05</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/css.css" type="text/css" />
+  <script src="js/jquery.js"></script>
+  <script>
+  $(function() {
+    var img = $("img");
+    var num = 0;
+    img.each(function(i) {
+      var oImg = new image();
+      oImg.onload = function() {
+        oImg.onload = null;
+        num++;
+        $(".loading b").html(parseInt(num / $("img").size() * 100) + "%");
+        if (num >= i) {
+          $(".loading").fadeOut();
+        }
+      }
+      oImg.src = image[i].src;
+    });
+  });
+
+  </script>
+</head>
+
+<body>
+  <div class="loading">
+    <div class="pic">
+      <span></span>
+      <b>0%</b>
+    </div>
+  </div>
+  <img src="http://b.hiphotos.baidu.com/image/pic/item/64380cd7912397dde8a3b5325382b2b7d0a28729.jpg" alt="">
+</body>
+
+</html>
+
+//--></SCRIPT>
