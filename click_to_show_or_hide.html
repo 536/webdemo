@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script>
+            function showhide(event) {
+                console.log(event);
+                console.log(event.target);
+                console.log(event.target.nextElementSibling);
+
+                console.log(event.target.nodeName)  //获取事件触发元素标签name
+                console.log(event.target.className)  //获取事件触发元素classname
+                console.log(event.target.innerHTML)  //获取事件触发元素的内容
+                console.log(event.target.id)  //获取事件触发元素id
+
+                console.log(event.currentTarget.nodeName)  //获取事件绑定元素标签name
+                console.log(event.currentTarget.className)  //获取事件绑定元素classname
+                console.log(event.currentTarget.innerHTML)  //获取事件绑定元素的内容
+                console.log(event.currentTarget.id)  //获取事件绑定元素id
+
+                if (event.target.nextElementSibling.style.display == "none") {
+                    event.target.nextElementSibling.style.display = "block";
+                } else {
+                    event.target.nextElementSibling.style.display = "none";
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            function showhide2(obj) {
+                console.log(obj);
+                console.log(obj.nextElementSibling);
+                if (obj.nextElementSibling.style.display == "none") {
+                    obj.nextElementSibling.style.display = "block";
+                } else {
+                    obj.nextElementSibling.style.display = "none";
+                }
+            }
+        </script>
+        <style type="text/css">
+            div, h1 {
+                border: 1px solid black;
+                margin: 10px 0;
+                --webkit-user-select: none;
+            }
+            p {
+                background-color: #C87;
+                cursor: pointer;
+                user-select: none;
+            }
+            .clickable {
+                background-color: #5AB;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div onclick="showhide2(this);" id="div1" class="clickable">
+            <p>paraphrase1</p>
+            <p>paraphrase2</p>
+        </div>
+        <div id="div2">
+            <p onclick="showhide(event);" class="clickable">click event to show_hide next element.</p>
+            <p style="display: none;">点击前一个元素以显示/隐藏此元素</p>
+        </div>
+        <div id="div3">
+            <p onclick="showhide(this);" class="clickable">paraphrase3</p>
+            <p style="display: none;">paraphrase4</p>
+        </div>
+    </body>
+</html>
