@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+    html, body {
+        height: 100%;
+    }
+    .exammple {
+        transition: ease-in .3s;
+        background: linear-gradient(0, #448AFF 1px, #448AFF 1px) no-repeat,
+                    linear-gradient(-90deg, #448AFF 1px, #448AFF 1px) no-repeat,
+                    linear-gradient(-180deg, #448AFF 1px, #448AFF 1px) no-repeat,
+                    linear-gradient(-270deg, #448AFF 1px, #448AFF 1px) no-repeat;
+        background-size: 0 1px, 1px 0, 0 1px, 1px 0;
+        background-position: left top, right top, right bottom, left bottom;
+
+        border: 1px solid silver;
+        /*居中*/
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 auto;
+        width: 200px;
+        height: 50px;
+    }
+    .exammple:hover {
+        background-size: 100% 1px,  1px 100%, 100% 1px, 1px 100%;
+
+        border: none;
+    }
+</style>
+</head>
+<body>
+    <div class="exammple">hello world!</div>
+</body>
+</html>
