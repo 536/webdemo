@@ -28,8 +28,6 @@
 
 [点击复制页面内容](https://536.github.io/webdemo/点击复制页面内容)
 
-[动态边框](https://536.github.io/webdemo/动态边框)
-
 [动态统计数量](https://536.github.io/webdemo/动态统计数量)
 
 [动态线框](https://536.github.io/webdemo/动态线框)
