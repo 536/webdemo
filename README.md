@@ -2,6 +2,8 @@
 
 一些页面样式的示例，记录下来。
 
+[中午吃什么](https://536.github.io/webdemo/中午吃什么/index.html)
+
 [圆形头像旋转](https://536.github.io/webdemo/rotate_avatar_circle/rotate_avatar_circle.html)
 
 [图片轮播1](https://536.github.io/webdemo/imagebanner/imagebanner.html)
