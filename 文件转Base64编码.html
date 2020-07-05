@@ -14,6 +14,14 @@
         overflow: hidden;
     }
 
+    img {
+        display: block;
+        margin: 0 auto;
+        min-width: 10vw;
+        max-width: 50vw;
+        box-shadow: 1px 1px 10px #DA6C75;
+    }
+
     .empty::before {
         position: absolute;
         font-size: 50px;
@@ -35,13 +43,14 @@
         var reader = new FileReader();
         reader.onload = function(e) {
             document.body.insertAdjacentHTML("afterBegin", '<p>' + e.target.result + '</p>');
+            document.body.insertAdjacentHTML("afterBegin", '<img src="' + e.target.result + '" style=""/>');
             document.body.classList.remove('empty');
         };
         reader.readAsDataURL(event.dataTransfer.files[0]);
         event.preventDefault();
     }, false);
     </script>
-    <p>copyright https://www.zhangxinxu.com/sp/base64.html</p>
+    <p style="user-select: none;">copyright https://www.zhangxinxu.com/sp/base64.html</p>
 </body>
 
 </html>
